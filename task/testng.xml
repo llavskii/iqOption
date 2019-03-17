@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="iqOption" parallel="tests" thread-count="2">
+
+    <test name="Register Positive">
+        <classes>
+            <class name="com.iqOption.register.PositiveScenario"/>
+        </classes>
+    </test>
+    <test name="Register Negative">
+        <classes>
+            <class name="com.iqOption.register.NegativeScenario"/>
+        </classes>
+    </test>
+    <test name="Login Positive">
+        <classes>
+            <class name="com.iqOption.login.PositiveScenario"/>
+        </classes>
+    </test>
+
+</suite>
