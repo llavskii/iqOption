@@ -1,15 +1,13 @@
-package com.iqOption.register;
+package com.iqOption.services.rest.register;
 
-import com.iqOption.TestInit;
 import io.qameta.allure.Story;
 import org.testng.annotations.Test;
 
-import static com.iqOption.util.RestConst.REGISTER_URI;
+import static com.iqOption.util.RestConst.RegisterURI.REGISTER_SERVICE;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-//@Listeners({TestListener.class})
-public class PositiveScenario extends TestInit {
+public class PositiveRegisterTest extends RegisterTestInit {
 
     @Test(description = "Test description: Positive scenario of registration by REST with obligatory params")
     @Story("All correct paramaters of request for registration")
@@ -17,7 +15,7 @@ public class PositiveScenario extends TestInit {
         response = given()
                 .headers(clientRestDataGenerator.getHeaders())
                 .params(clientRestDataGenerator.getValidObligatoryRegisterParams())
-                .post(REGISTER_URI);
+                .post(REGISTER_SERVICE);
 
         response
                 .then()

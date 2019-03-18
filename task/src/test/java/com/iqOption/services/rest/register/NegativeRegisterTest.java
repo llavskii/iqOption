@@ -1,17 +1,16 @@
-package com.iqOption.register;
+package com.iqOption.services.rest.register;
 
-import com.iqOption.TestInit;
 import io.qameta.allure.Story;
 import org.testng.annotations.Test;
 
 import java.util.Map;
 
 import static com.iqOption.util.RestConst.ObligatoryRegisterParams.*;
-import static com.iqOption.util.RestConst.REGISTER_URI;
+import static com.iqOption.util.RestConst.RegisterURI.REGISTER_SERVICE;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-public class NegativeScenario extends TestInit {
+public class NegativeRegisterTest extends RegisterTestInit {
     @Test(description = "Test description: Negative scenario of registration by REST with obligatory params")
     @Story("Using email of registered user in request for registration")
     public void existEmail() {
@@ -20,7 +19,7 @@ public class NegativeScenario extends TestInit {
         response = given()
                 .headers(clientRestDataGenerator.getHeaders())
                 .params(params)
-                .post(REGISTER_URI);
+                .post(REGISTER_SERVICE);
         response
                 .then()
                 .statusCode(200)
@@ -36,7 +35,7 @@ public class NegativeScenario extends TestInit {
         response = given()
                 .headers(clientRestDataGenerator.getHeaders())
                 .params(params)
-                .post(REGISTER_URI);
+                .post(REGISTER_SERVICE);
         response
                 .then()
                 .statusCode(200)
@@ -46,13 +45,13 @@ public class NegativeScenario extends TestInit {
     }
 
     @Test(description = "Test description: Negative scenario of registration by REST with obligatory params")
-    @Story("Using invalid password in request for registration")
-    public void notValidPassword() {
+    @Story("Using empty String for first name in request for registration")
+    public void missingFirstName() {
         Map<String, String> params = clientRestDataGenerator.getRegisterParamsAndReplace(FIRST_NAME, "");
         response = given()
                 .headers(clientRestDataGenerator.getHeaders())
                 .params(params)
-                .post(REGISTER_URI);
+                .post(REGISTER_SERVICE);
         response
                 .then()
                 .statusCode(200)
@@ -62,13 +61,13 @@ public class NegativeScenario extends TestInit {
     }
 
     @Test(description = "Test description: Negative scenario of registration by REST with obligatory params")
-    @Story("Using empty String for first name in request for registration")
-    public void missingFirstName() {
+    @Story("Using invalid password in request for registration")
+    public void notValidPassword() {
         Map<String, String> params = clientRestDataGenerator.getNotValidObligatoryRegisterParams(PASSWORD);
         response = given()
                 .headers(clientRestDataGenerator.getHeaders())
                 .params(params)
-                .post(REGISTER_URI);
+                .post(REGISTER_SERVICE);
         response
                 .then()
                 .statusCode(200)

@@ -30,7 +30,7 @@ public class ClientRestDataGenerator {
 
     public Map<String, String> getHeaders() {
         Map<String, String> headers = new HashMap<>();
-        headers.put(NAME.toString(), "cookie");
+        headers.put(NAME.toString(), "Cookie");
         headers.put(VALUE.toString(), "lang");
         headers.put(DATA.toString(), String.format("<lang=%s>", locale.toString()));
         return headers;
@@ -80,9 +80,31 @@ public class ClientRestDataGenerator {
 
     //In a real environment, the test will access the database for specific emails/passwords taking into account depersonalization
     public Map<String, String> getValidLoginParams() {
-        Map<String, String> params = new HashMap<>();
-        params.put("email", "gabrielle.kuhic@yahoo.com");
-        params.put("password", "vsKzgJ5dwJ");
-        return params;
+        return new HashMap<String, String>() {{
+            put("email", "gabrielle.kuhic@yahoo.com");
+            put("password", "vsKzgJ5dwJ");
+        }};
+    }
+
+    public Map<String, String> getNotValidLoginEmailInParams() {
+        return new HashMap<String, String>() {{
+            put("email", "gabrielle.kuhic________yahoo.com");
+            put("password", "vsKzgJ5dwJ");
+        }};
+    }
+
+    public Map<String, String> getNotValidLoginPasswordInParams() {
+        return new HashMap<String, String>() {{
+            put("email", "gabrielle.kuhic@yahoo.com");
+            put("password", "vsKzg____!___J5dwJ");
+        }};
+    }
+
+    public Map<String, String> getValidGetProfileParams(String ssid) {
+        return new HashMap<String, String>() {{
+            put("name", "Cookie");
+            put("value", "ssid");
+            put("data", String.format("<%s>", ssid));
+        }};
     }
 }

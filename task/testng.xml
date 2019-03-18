@@ -1,21 +1,22 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="iqOption" parallel="tests" thread-count="2">
+<!--<suite name="iqOption" parallel="tests" thread-count="2">-->
+<suite name="iqOption">
 
-    <test name="Register Positive">
-        <classes>
-            <class name="com.iqOption.register.PositiveScenario"/>
-        </classes>
+    <test name="Register Rest">
+        <packages>
+            <package name="com.iqOption.services.rest.register"/>
+        </packages>
     </test>
-    <test name="Register Negative">
-        <classes>
-            <class name="com.iqOption.register.NegativeScenario"/>
-        </classes>
+    <test name="Login Rest">
+        <packages>
+            <package name="com.iqOption.services.rest.login"/>
+        </packages>
     </test>
-    <test name="Login Positive">
-        <classes>
-            <class name="com.iqOption.login.PositiveScenario"/>
-        </classes>
+    <test name="Authorization websocket">
+        <packages>
+            <package name="com.iqOption.services.websocket.authorization"/>
+        </packages>
     </test>
 
 </suite>
